@@ -24,11 +24,6 @@ Before starting the assignment, ensure you have the following software installed
      spark-submit --version
      ```
 
-4. **Docker & Docker Compose** (Optional):
-   - If you prefer using Docker for setting up Spark, ensure Docker and Docker Compose are installed.
-   - [Docker Installation Guide](https://docs.docker.com/get-docker/)
-   - [Docker Compose Installation Guide](https://docs.docker.com/compose/install/)
-
 ## **Setup Instructions**
 
 ### **1. Project Structure**
@@ -68,9 +63,9 @@ You can run the analysis tasks either locally or using Docker.
 
 #### **a. Running Locally**
 
-1. **Navigate to the Project Directory**:
+1. **Run this command to run the directory**:
    ```bash
-   cd SocialMediaSentimentAnalysis/
+    python input_generater.py
    ```
 
 2. **Execute Each Task Using `spark-submit`**:
@@ -89,44 +84,6 @@ You can run the analysis tasks either locally or using Docker.
    ls outputs/
    ```
 
-#### **b. Running with Docker (Optional)**
-
-1. **Start the Spark Cluster**:
-   ```bash
-   docker-compose up -d
-   ```
-
-2. **Access the Spark Master Container**:
-   ```bash
-   docker exec -it spark-master bash
-   ```
-
-3. **Navigate to the Spark Directory**:
-   ```bash
-   cd /opt/bitnami/spark/
-   ```
-
-4. **Run Your PySpark Scripts Using `spark-submit`**:
-   ```bash
-   
-   spark-submit src/task1_hashtag_trends.py
-   spark-submit src/task2_engagement_by_age.py
-   spark-submit src/task3_sentiment_vs_engagement.py
-   spark-submit src/task4_top_verified_users.py
-   ```
-
-5. **Exit the Container**:
-   ```bash
-   exit
-   ```
-
-6. **Verify the Outputs**:
-   On your host machine, check the `outputs/` directory for the resulting files.
-
-7. **Stop the Spark Cluster**:
-   ```bash
-   docker-compose down
-   ```
 
 ## **Overview**
 
@@ -175,15 +132,6 @@ You will work with a dataset containing information about **100+ users** who rat
 
 Below is a snippet of the `posts.csv`,`users.csv` to illustrate the data structure. Ensure your dataset contains at least 100 records for meaningful analysis.
 
-```
-PostID,UserID,Content,Timestamp,Likes,Retweets,Hashtags,SentimentScore
-101,1,"Loving the new update! #tech #innovation","2023-10-05 14:20:00",120,45,"#tech,#innovation",0.8
-102,2,"This app keeps crashing. Frustrating! #fail","2023-10-05 15:00:00",5,1,"#fail",-0.7
-103,3,"Just another day... #mood","2023-10-05 16:30:00",15,3,"#mood",0.0
-104,4,"Absolutely love the UX! #design #cleanUI","2023-10-06 09:10:00",75,20,"#design,#cleanUI",0.6
-105,5,"Worst experience ever. Fix it. #bug","2023-10-06 10:45:00",2,0,"#bug",-0.9
-```
-
 ---
 
 ```
@@ -223,9 +171,16 @@ A ranked list of the most-used hashtags and their frequencies.
 
 | Hashtag     | Count |
 |-------------|-------|
-| #tech       | 120   |
-| #mood       | 98    |
-| #design     | 85    |
+| #mood       | 23    |
+| #love       | 23    |
+| #design     | 21    |
+| #fail       | 21    |
+| #AI         | 20    |
+| #social     | 19    |
+| #cleanUI    | 19    |
+| #UX         | 19    |
+| #tech       | 18    |
+| #bug        | 14    |
 
 ---
 
@@ -247,9 +202,9 @@ A summary of user engagement behavior categorized by age group.
 
 | Age Group | Avg Likes | Avg Retweets |
 |-----------|-----------|--------------|
-| Adult     | 67.3      | 25.2         |
-| Teen      | 22.0      | 5.6          |
-| Senior    | 9.2       | 1.3          |
+| Adult     | 72.10     | 25.72        |
+| Teen      | 71.96     | 29.30        |
+| Senior    | 71.84     | 29.8         |
 
 ---
 
@@ -270,9 +225,9 @@ Insights into whether happier or angrier posts get more attention.
 
 | Sentiment | Avg Likes | Avg Retweets |
 |-----------|-----------|--------------|
-| Positive  | 85.6      | 32.3         |
-| Neutral   | 27.1      | 10.4         |
-| Negative  | 13.6      | 4.7          |
+| Positive  | 73.8      | 25.7         |
+| Neutral   | 62.77     | 27.70        |
+| Negative  | 81.05     | 27.28        |
 
 ---
 
@@ -294,20 +249,13 @@ A leaderboard of verified users based on audience engagement.
 
 | Username       | Total Reach |
 |----------------|-------------|
-| @techie42      | 1650        |
-| @designer_dan  | 1320        |
+| @rage_user     | 1650        |
+| @pixel_pusher  | 1320        |
+| @daily_vibes   | 966         |
 
 ---
 
-## **Grading Criteria**
 
-| Task                        | Marks |
-|-----------------------------|-------|
-| Hashtag Trend Analysis      | 1     |
-| Engagement by Age Group     | 1     |
-| Sentiment vs Engagement     | 1     |
-| Top Verified Users by Reach | 1     |
-| **Total**                   | **1** |
 
 ---
 
